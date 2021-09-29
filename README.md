@@ -25,7 +25,14 @@ reproduction of efficientdet with paddlepaddle.
 
 ## train
 ```python
+# 单卡
 !python tools/train.py -c configs/efficientdet/efficientdet_d0_1x_coco.yml --eval --use_vdl=True
+```
+
+```
+# 多卡
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+python -m paddle.distributed.launch --gpus 0,1,2,3 tools/train.py -c configs/efficientdet/efficientdet_d0_1x_coco.yml --eval --use_vdl=True
 ```
 
 ## AIStudio项目
