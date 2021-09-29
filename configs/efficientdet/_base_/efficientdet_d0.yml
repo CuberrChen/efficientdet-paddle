@@ -1,0 +1,44 @@
+architecture: EfficientDet
+pretrain_weights: https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/EfficientNetB0_pretrained.pdparams
+
+EfficientDet:
+  backbone: EfficientNet
+  neck: BiFPN
+  anchor_generator: AnchorGenerator
+  head: EfficientHead
+  postprocess: EfficientPostProcess
+  box_loss_weight: 50.
+
+EfficientNet:
+  name: b0
+  use_se: true
+
+BiFPN:
+  out_channel: 64
+  num_stacks: 3
+
+AnchorGenerator:
+  anchor_sizes: [32, 64, 128, 256, 512]
+  aspect_ratios: [0.5, 1.0, 2.0]
+  strides: [8.0, 16.0, 32.0, 64.0, 128.0]
+
+EfficientHead:
+  num_classes: 80
+  repeat: 3
+  loss_func: EfficientDetLoss
+  prior_prob: 0.01
+
+EfficientPostProcess:
+  nms:
+    name: MultiClassNMS
+    nms_top_k: 1000
+    keep_top_k: 100
+    nms_threshold: 0.5
+  bbox_reg_weights: [1.0, 1.0, 1.0, 1.0]
+
+EfficientDetLoss:
+  focal_loss_alpha: 0.25
+  focal_loss_gamma: 1.5
+  smoothl1_loss_delta: 0.1
+  positive_thresh: 0.5
+  negative_thresh: 0.4
