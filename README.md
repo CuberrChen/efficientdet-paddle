@@ -31,4 +31,9 @@ reproduction of efficientdet with paddlepaddle.
 ## AIStudio项目
 
 [AIStudio](https://aistudio.baidu.com/aistudio/projectdetail/2405619?contributionType=1)
->>>>>>> master
+
+
+## Reference
+- [EfficientDet](https://openaccess.thecvf.com/content_CVPR_2020/html/Tan_EfficientDet_Scalable_and_Efficient_Object_Detection_CVPR_2020_paper.html)
+- [efficientdet-pytorch](https://github.com/rwightman/efficientdet-pytorch)
+- [FL77N/RetinaNet-Based-on-PPdet](https://github.com/FL77N/RetinaNet-Based-on-PPdet) 
